@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const AuthRoute = require("./routes/auth");
 const router = require("./routes/routes");
 const { param } = require("express/lib/request");
+const dotenv = require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -17,8 +18,7 @@ app.use("/", router);
 
 app.use("/", AuthRoute);
 
-const URI =
-  "mongodb+srv://guru:welcome123raj@cluster0.hnj7k7t.mongodb.net/?retryWrites=true&w=majority";
+const URI = process.env.DB_URL;
 mongoose
   .connect(URI)
   .then(() => {
